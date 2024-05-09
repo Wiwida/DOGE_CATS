@@ -1,0 +1,29 @@
+.page-home {
+    width: 100%;
+    min-height: calc(100vh - 80px);
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+        letter-spacing: 0.25rem;
+        font-size: 100px;
+        line-height: 45vh;
+        font-weight: 800;
+        text-shadow: var(--background-primary) 0.1em 0.1em 0.2em;
+    }
+
+    .home-first-place {
+        font-weight: 600;
+        font-size: 40px;
+        text-shadow: var(--background-primary) 0.1em 0.1em 0.2em;
+    }
+
+    .home-first-place-details {
+        font-style: italic;
+        margin-top: 20px;
+        text-shadow: var(--background-primary) 0.1em 0.1em 0.2em;
+    }
+
+}

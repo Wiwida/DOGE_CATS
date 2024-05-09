@@ -1,0 +1,21 @@
+// LOW reset :
+*, ::after, ::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+
+    // Fonts :
+    
+    // Colors :
+    --picton-blue: #00a6fbff;
+    --lapis-lazuli: #006494ff;
+    --button-primary: #0582caff;
+    --navbar: #003554ff;
+    --background-primary: #051923ff;
+    --text-primary-light: white;
+
+    --size-box-for-shib-bckg: calc(100% - (1440px - 300px))
+}
