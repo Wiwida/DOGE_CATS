@@ -22,8 +22,28 @@
 
     .home-first-place-details {
         font-style: italic;
-        margin-top: 20px;
+        margin-top: 35px;
         text-shadow: var(--background-primary) 0.1em 0.1em 0.2em;
+    }
+
+    .home-barchart {
+        padding: 12px;
+        width: 60%;
+        margin-top: 90px;
+        margin-bottom: 70px;
+        display: flex;
+        align-items: center;
+        align-self: center;
+        justify-content: center;
+        backdrop-filter: blur(12px);
+        background-color: rgba(21, 32, 43, 0.75);
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+        .mantine-BarChart-root {
+            width: 100%;
+            padding: 55px 30px 10px 10px;
+        }
     }
 
 }

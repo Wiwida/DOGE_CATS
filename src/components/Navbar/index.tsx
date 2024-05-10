@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import './style.scss';
 import Dogelogo from './../../assets/img/logo/dogecoin.svg';
-import { Button } from '@mantine/core';
 import { IconShoppingCart } from '@tabler/icons-react';
+import { ButtonComponent } from '../Button';
 
 export const Navbar = () => {
 
@@ -25,9 +25,13 @@ export const Navbar = () => {
                         Dogepaper
                     </Link>
                 </div>
-                <Button leftSection={<IconShoppingCart/>} color='var(--text-primary-light)' autoContrast >
+                <ButtonComponent
+                    leftSection={<IconShoppingCart/>} 
+                    color='var(--text-primary-light)'
+                    onClickFn={() => console.log('Hello !')}
+                >
                     Payer
-                </Button>
+                </ButtonComponent>
             </div>
         </div>
     );

@@ -1,0 +1,29 @@
+.container-button-component {
+    button {
+        background-color: var(--button-primary);
+        border: 0;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        letter-spacing: 0.05rem;
+        font-weight: 600;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        transition: 0.5s;
+
+        &:hover {
+            background-color: rgba(5, 130, 202, 0.6);
+        }
+
+        .mantine-Button-inner {
+            display: flex;
+            align-items: center;   
+            
+            .mantine-Button-label {
+                margin-left: 8px;
+                font-size: 16px;
+                margin-bottom: 3px;
+            }
+        }
+    }    
+}
+
