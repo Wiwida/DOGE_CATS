@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import './style.scss';
-import Dogelogo from './../../assets/img/logo/dogecoin.svg';
+import Dogelogo from '../../assets/img/logos/dogecoin.svg';
 import { IconShoppingCart } from '@tabler/icons-react';
 import { ButtonComponent } from '../Button';
 
@@ -19,7 +19,7 @@ export const Navbar = () => {
                         Accueil
                     </Link>
                     <Link to='/market' className='link'>
-                        Marché
+                        Marchés
                     </Link>
                     <Link to='/dogepaper' className='link'>
                         Dogepaper

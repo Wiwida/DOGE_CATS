@@ -7,7 +7,7 @@ export const Home = () => {
         <div className="page-home">
             <h1>DOGECEX</h1>
             <span className="home-first-place">
-                Faites confiance au numéro un en <br/> terme de volumes sur les marchés *
+                Faites confiance au numéro un en <br/> termes de volumes sur les marchés *
             </span>
             <span className="home-first-place-details">
                 * Dernières 24h, en milliards de dollars
@@ -26,7 +26,8 @@ export const Home = () => {
                     type="stacked"
                     orientation="vertical"
                     withLegend
-                    legendProps={{ verticalAlign: 'bottom' }}
+                    // unit="$"
+                    legendProps={{ verticalAlign: 'top', height: 75}}
                     series={[
                         { name: 'Binance', label: 'Binance', color: 'violet.6' },
                         { name: 'Kucoin', label: 'Kucoin', color: 'blue.6' },
