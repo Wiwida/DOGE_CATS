@@ -11,19 +11,19 @@
         font-size: 100px;
         line-height: 45vh;
         font-weight: 800;
-        text-shadow: var(--background-primary) 0.1em 0.1em 0.2em;
+        text-shadow: var(--text-shadow-classic);
     }
 
     .home-first-place {
         font-weight: 600;
         font-size: 40px;
-        text-shadow: var(--background-primary) 0.1em 0.1em 0.2em;
+        text-shadow: var(--text-shadow-classic);
     }
 
     .home-first-place-details {
         font-style: italic;
         margin-top: 35px;
-        text-shadow: var(--background-primary) 0.1em 0.1em 0.2em;
+        text-shadow: var(--text-shadow-classic);
     }
 
     .home-barchart {
@@ -43,6 +43,21 @@
         .mantine-BarChart-root {
             width: 100%;
             padding: 0px 35px 25px 10px;
+
+            .mantine-ChartLegend-legend {
+                :hover {
+                    color: black !important;
+                }
+
+                .mantine-ChartLegend-legendItem {
+                    
+                    :hover {
+                        color: black !important;
+                    }
+                }                
+            }
+
+
         }
     }
 

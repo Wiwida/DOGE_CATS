@@ -1,7 +1,25 @@
-import { BarChart } from '@mantine/charts';
+import { BarChart, BarChartSeries } from '@mantine/charts';
 import "./style.scss"
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { fetchExchangeInfos } from '../../../api/allCallApi';
+import { selectExchangeSortedByVolume } from '../../redux/slices/globalSlice';
 
 export const Home = () => {
+
+    const dispatch = useAppDispatch();
+
+    const allExchangesSortedByVolume = useAppSelector(selectExchangeSortedByVolume);
+    const exchangesValuesFormattedForChart = allExchangesSortedByVolume?.map(el => ({exchange: el.name, [el.name]: el.volumeUsd})) as Record<string, unknown>[];
+    const exchangesValuesFormattedForChartSeries = allExchangesSortedByVolume?.map(el => ({
+        name: el.name,
+        label: el.name,
+        color: `#006494ff`,
+    })) as BarChartSeries[];
+
+    useEffect(() => {
+        dispatch(fetchExchangeInfos());
+    },[dispatch]);
 
     return(
         <div className="page-home">
@@ -15,24 +33,15 @@ export const Home = () => {
             <div className="home-barchart">
                 <BarChart
                     h={300}
-                    data={[
-                        { month: 'Binance', Binance: 3000 },
-                        { month: 'Kucoin', Kucoin: 1100},
-                        { month: 'DogeCEX', DogeCEX: 20000 }, 
-                    ]}
-                    dataKey="month"
+                    data={exchangesValuesFormattedForChart?.length ? exchangesValuesFormattedForChart : []}
+                    dataKey="exchange"
                     yAxisProps={{ width: 80 }}
                     barProps={{ radius: 5 }}
                     type="stacked"
-                    orientation="vertical"
                     withLegend
-                    // unit="$"
+                    unit="$"
                     legendProps={{ verticalAlign: 'top', height: 75}}
-                    series={[
-                        { name: 'Binance', label: 'Binance', color: 'violet.6' },
-                        { name: 'Kucoin', label: 'Kucoin', color: 'blue.6' },
-                        { name: 'DogeCEX', label: 'DogeCEX', color: 'teal.6' },
-                    ]}
+                    series={exchangesValuesFormattedForChartSeries?.length ? exchangesValuesFormattedForChartSeries : []}
                 />
             </div>
 

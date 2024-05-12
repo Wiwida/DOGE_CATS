@@ -10,7 +10,9 @@
     // Fonts :
     
     // Colors :
-    --picton-blue: #00a6fbff;
+    --card-background-primary: #00a6fbff;
+    --card-background-with-effect: rgba(0, 167, 251, 0.1); 
+
     --lapis-lazuli: #006494ff;
     --button-primary: #0582caff;
     --navbar: #003554ff;
@@ -24,5 +26,9 @@
     --ethereum-shadow: rgba(0, 110, 255, 0.1) 0px 8px 24px, rgba(0, 110, 255, 0.1) 0px 16px 56px, rgba(0, 110, 255, 0.1) 0px 24px 80px;
     --doge-shadow: rgba(255, 230, 0, 0.1) 0px 8px 24px, rgba(255, 230, 0, 0.1) 0px 16px 56px, rgba(255, 230, 0, 0.1) 0px 24px 80px;
 
+    // Text-shadow for better lisibility :
+    --text-shadow-classic: var(--background-primary) 0.1em 0.1em 0.2em;
+
+    // Special for background image shiba inu
     --size-box-for-shib-bckg: calc(100% - (1440px - 300px))
 }

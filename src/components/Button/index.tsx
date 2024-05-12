@@ -2,8 +2,8 @@ import { Button, ButtonProps } from '@mantine/core';
 import "./style.scss";
 
 interface ButtonComponentProps extends ButtonProps {
-    color: string;
-    leftSection: JSX.Element;
+    color?: string;
+    leftSection?: JSX.Element;
     onClickFn: () => void;
     children: JSX.Element | string;
 }

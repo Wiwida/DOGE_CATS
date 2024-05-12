@@ -6,13 +6,17 @@ import '@mantine/charts/styles.css';
 import { MantineProvider } from '@mantine/core';
 import { BrowserRouter } from 'react-router-dom';
 import '../global.scss';
+import { Provider } from 'react-redux';
+import { store } from './app/store.ts';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <MantineProvider>
-        <App />
-      </MantineProvider>    
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <MantineProvider>
+          <App />
+        </MantineProvider>    
+      </BrowserRouter>      
+    </Provider>
   </React.StrictMode>,
 )
