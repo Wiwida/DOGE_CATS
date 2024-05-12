@@ -5,7 +5,7 @@ interface ButtonComponentProps extends ButtonProps {
     color?: string;
     leftSection?: JSX.Element;
     onClickFn: () => void;
-    children: JSX.Element | string;
+    children?: JSX.Element | string;
 }
 
 export const ButtonComponent = ({color, leftSection, onClickFn, children, ...propsMantine}: ButtonComponentProps) => {

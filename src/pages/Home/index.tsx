@@ -2,7 +2,7 @@ import { BarChart, BarChartSeries } from '@mantine/charts';
 import "./style.scss"
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { fetchExchangeInfos } from '../../../api/allCallApi';
+import { fetchExchangeInfos } from '../../api/allCallApi';
 import { selectExchangeSortedByVolume } from '../../redux/slices/globalSlice';
 
 export const Home = () => {
@@ -11,6 +11,7 @@ export const Home = () => {
 
     const allExchangesSortedByVolume = useAppSelector(selectExchangeSortedByVolume);
     const exchangesValuesFormattedForChart = allExchangesSortedByVolume?.map(el => ({exchange: el.name, [el.name]: el.volumeUsd})) as Record<string, unknown>[];
+    
     const exchangesValuesFormattedForChartSeries = allExchangesSortedByVolume?.map(el => ({
         name: el.name,
         label: el.name,
@@ -28,7 +29,7 @@ export const Home = () => {
                 Faites confiance au numéro un en <br/> termes de volumes sur les marchés *
             </span>
             <span className="home-first-place-details">
-                * Dernières 24h, en milliards de dollars
+                * Dernières 24h, en dollars
             </span>
             <div className="home-barchart">
                 <BarChart
@@ -44,7 +45,6 @@ export const Home = () => {
                     series={exchangesValuesFormattedForChartSeries?.length ? exchangesValuesFormattedForChartSeries : []}
                 />
             </div>
-
         </div>
     );
 };

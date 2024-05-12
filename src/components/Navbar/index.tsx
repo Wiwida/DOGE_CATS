@@ -1,10 +1,16 @@
-import { Link } from 'react-router-dom';
-import './style.scss';
+import { Link, useNavigate } from 'react-router-dom';
 import Dogelogo from '../../assets/img/logos/dogecoin.svg';
 import { IconShoppingCart } from '@tabler/icons-react';
 import { ButtonComponent } from '../Button';
+import { useAppSelector } from '../../app/hooks';
+import { selectTicketAdded } from '../../redux/slices/globalSlice';
+import './style.scss';
 
 export const Navbar = () => {
+
+    const counterTicket = useAppSelector(selectTicketAdded);
+
+    const navigate = useNavigate();
 
     return(
         <div className='container-nav'>
@@ -25,13 +31,17 @@ export const Navbar = () => {
                         Dogepaper
                     </Link>
                 </div>
-                <ButtonComponent
-                    leftSection={<IconShoppingCart/>} 
-                    color='var(--text-primary-light)'
-                    onClickFn={() => console.log('Hello !')}
-                >
-                    Payer
-                </ButtonComponent>
+                <div className='container-button-notif'>
+                    <span className='counter-button'>{counterTicket}</span>
+                    <ButtonComponent
+                        leftSection={<IconShoppingCart/>} 
+                        color='var(--text-primary-light)'
+                        onClickFn={() => navigate('./payment')}
+                        disabled={!counterTicket}
+                    >
+                        Payer
+                    </ButtonComponent>                    
+                </div>
             </div>
         </div>
     );

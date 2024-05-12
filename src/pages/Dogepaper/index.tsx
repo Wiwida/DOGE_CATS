@@ -1,7 +1,30 @@
+import { useEffect } from 'react';
 import { ButtonComponent } from '../../components/Button';
 import './style.scss';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { fetchDogeInfos } from '../../api/allCallApi';
+import { incrementValue, selectDoge } from '../../redux/slices/globalSlice';
 
 export const Dogepaper = () => {
+
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(fetchDogeInfos());
+    }, [dispatch]);
+
+    const valueDoge = useAppSelector(selectDoge);
+
+    let numberDogeForOneTicket = 0;
+
+    if (valueDoge !== null) {
+        numberDogeForOneTicket = Number(parseFloat(valueDoge.priceUsd).toFixed(2));
+    }
+
+    const handleOnClick = () => {
+        dispatch(incrementValue());
+    };
+
 
   return (
     <div className='page-dogepaper'>
@@ -22,7 +45,7 @@ export const Dogepaper = () => {
                     =
                 </span>
                 <span className='price'>
-                    ?? $DOGE
+                    {valueDoge !== null ? (4 / numberDogeForOneTicket).toFixed(2) : "??"} $DOGE
                 </span>
             </div>
             <span className='convert-doge-details'>
@@ -30,7 +53,7 @@ export const Dogepaper = () => {
             </span>
         </div>
         <ButtonComponent
-            onClickFn={() => console.log("Good job !")}
+            onClickFn={handleOnClick}
             size='compact-xl'
         >
             Ajouter un ticket au panier

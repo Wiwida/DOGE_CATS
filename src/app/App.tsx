@@ -2,8 +2,9 @@ import { Route, Routes } from 'react-router-dom';
 import { Home } from '../pages/Home';
 import { Navbar } from '../components/Navbar';
 import { Market } from '../pages/Market';
-import './style.scss';
 import { Dogepaper } from '../pages/Dogepaper';
+import { Payment } from '../pages/Payment';
+import './style.scss';
 
 const App = () => {
 
@@ -14,7 +15,7 @@ const App = () => {
         <Route path="/"  element={<Home/>} />
         <Route path="/market"  element={<Market/>} /> 
         <Route path="/dogepaper"  element={<Dogepaper/>} />
-        {/* <Route path="/payment"  element={<Payment/>} />  */}
+        <Route path="/payment"  element={<Payment/>} /> 
       </Routes>
     </div>
   )

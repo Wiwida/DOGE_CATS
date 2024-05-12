@@ -1,8 +1,6 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
-// import type { PayloadAction } from '@reduxjs/toolkit';
-// import type { RootState } from '../../app/store';
-import { CoinHistoryType, CoinType, ExchangeResponse } from '../../../api/types';
-import { fetchExchangeInfos } from '../../../api/allCallApi';
+import { CoinHistoryType, CoinType, ExchangeResponse } from '../../api/types';
+import { fetchBitcoinHistoryInfos, fetchBitcoinInfos, fetchDogeHistoryInfos, fetchDogeInfos, fetchEthereumHistoryInfos, fetchEthereumInfos, fetchExchangeInfos } from '../../api/allCallApi';
 import { RootState } from '../../app/store';
 
 interface globalState {
@@ -46,6 +44,7 @@ const initialState: globalState = {
         counterTicketAdded: 0,
     },
 };
+
 export const globalSlice = createSlice({
   name: 'global',
   initialState,
@@ -59,31 +58,86 @@ export const globalSlice = createSlice({
         if (counterTicket > 0) {
             state.internals.counterTicketAdded -= 1;
         }
+    },
+    confirmPayment: (state) => {
+        state.internals.counterTicketAdded = 0;
+        // Posibility for better understanding !
+        // notifications.show({
+        //     title: 'Paiement accepté !',
+        //     message: 'En avant pour les JO jeune SHIBAWAN !',
+        //     color: "green",
+        //     autoClose: true,
+
+        // })
     }
   },
   extraReducers: (builder) => {
+    // Exchange :
     builder.addCase(fetchExchangeInfos.fulfilled, (state, { payload }) => {
         
         if (payload !== undefined) {
-            console.log(payload)
             state.data.home.volumes = payload;
         }
-    })
+    }),
+    // Notif better ...!
+    builder.addCase(fetchExchangeInfos.rejected, (state, { payload }) => console.log(payload)),
+
+    //Doge :
+    builder.addCase(fetchDogeInfos.fulfilled, (state, { payload }) => {
+        if (payload !== undefined) {
+            state.data.market.doge = payload;
+        }
+    }),
+    builder.addCase(fetchDogeInfos.rejected, (state, { payload }) => console.log(payload)),
+    builder.addCase(fetchDogeHistoryInfos.fulfilled, (state, { payload }) => {
+        if (payload !== undefined) {
+            state.data.market.dogeHistory = payload;
+        }
+    }),
+    builder.addCase(fetchDogeHistoryInfos.rejected, (state, { payload }) => console.log(payload)),
+
+    //Bitcoin :
+    builder.addCase(fetchBitcoinInfos.fulfilled, (state, { payload }) => {
+        if (payload !== undefined) {
+            state.data.market.bitcoin = payload;
+        }
+    }),
+    builder.addCase(fetchBitcoinInfos.rejected, (state, { payload }) => console.log(payload)),
+    builder.addCase(fetchBitcoinHistoryInfos.fulfilled, (state, { payload }) => {
+        if (payload !== undefined) {
+            state.data.market.bitcoinHistory = payload;
+        }
+    }),
+    builder.addCase(fetchBitcoinHistoryInfos.rejected, (state, { payload }) => console.log(payload)),
+
+    //Ethereum :
+    builder.addCase(fetchEthereumInfos.fulfilled, (state, { payload }) => {
+        if (payload !== undefined) {
+            state.data.market.ethereum = payload;
+        }
+    }),
+    builder.addCase(fetchEthereumInfos.rejected, (state, { payload }) => console.log(payload)),
+    builder.addCase(fetchEthereumHistoryInfos.fulfilled, (state, { payload }) => {
+        if (payload !== undefined) {
+            state.data.market.ethereumHistory = payload;
+        }
+    }),
+    builder.addCase(fetchEthereumHistoryInfos.rejected, (state, { payload }) => console.log(payload))
   }
 });
 
 export const {
     decrementValue,
     incrementValue,
+    confirmPayment,
 
 } = globalSlice.actions;
 
+// Selector :
 // For better perf :
 export const selectExchangeSortedByVolume = createSelector(
     (state: RootState) => state.global.data.home.volumes,
     (allExchangeVolumes) => {
-        console.log(allExchangeVolumes);
-
         if (allExchangeVolumes.length > 0) {
             return [
                 ...allExchangeVolumes,
@@ -99,7 +153,32 @@ export const selectExchangeSortedByVolume = createSelector(
     }
 );
 
-// Selector ex
-// export const selectCount = (state: RootState) => state.counter.value
+export const selectAllValuesVolumeDoge = createSelector(
+    (state: RootState) => state.global.data.market.dogeHistory,
+    (dogeValuesHistory) => {
+        return dogeValuesHistory.map(el => parseFloat(el.priceUsd));
+    }
+);
+
+export const selectAllValuesVolumeBitcoin = createSelector(
+    (state: RootState) => state.global.data.market.bitcoinHistory,
+    (bitcoinValuesHistory) => {
+        return bitcoinValuesHistory.map(el => parseFloat(el.priceUsd));
+    }
+);
+
+export const selectAllValuesVolumeEthereum = createSelector(
+    (state: RootState) => state.global.data.market.ethereumHistory,
+    (ethereumValuesHistory) => {
+        return ethereumValuesHistory.map(el => parseFloat(el.priceUsd));
+    }
+);
+
+// Classic selector :
+export const selectDoge = (state: RootState) => state.global.data.market.doge;
+export const selectBitcoin = (state: RootState) => state.global.data.market.bitcoin;
+export const selectEthereum = (state: RootState) => state.global.data.market.ethereum;
+
+export const selectTicketAdded = (state: RootState) => state.global.internals.counterTicketAdded;
 
 export default globalSlice.reducer;

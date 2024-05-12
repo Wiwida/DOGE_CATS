@@ -9,12 +9,14 @@ export const fetchExchangeInfos = createAsyncThunk(
             const response = await fetch(EXCHANGE_URL);
             
             if (response?.ok) {
-                console.log(response)
                 const responseJson: {data: ExchangeResponse[]} = await response.json();
 
                 const responseJsonFormatted = responseJson.data.map((el) => ({
                     exchangeId: el.exchangeId,
+
+                    // For better UI After :
                     name: el.name === "Coinbase Pro" ? "Coinbase" : el.name,
+
                     volumeUsd: parseInt(el.volumeUsd),
                     socket: el.socket,
                     exchangeUrl: el.exchangeUrl,
@@ -34,8 +36,10 @@ export const fetchDogeInfos = createAsyncThunk(
     'global/fetchDogeInfos',
     async (_, {rejectWithValue}) => {
         try {
-            const response = await fetch(DOGE_URL);
-            return (await response.json()) as CoinType;      
+            const response = await fetch(DOGE_URL);    
+            const responseJson: {data: CoinType} = await response.json(); 
+
+            return responseJson.data;
 
         } catch (error) {
             rejectWithValue("Oups un problème est apparu !");
@@ -48,10 +52,10 @@ export const fetchDogeHistoryInfos = createAsyncThunk(
     async (_, {rejectWithValue}) => {
         try {
             const response = await fetch(DOGE_HISTORY_URL);
-            const responseJson: CoinHistoryType[] = await response.json();
+            const responseJson: {data: CoinHistoryType[]} = await response.json();
 
             // Last 7 days history price
-            return responseJson.slice(-7);      
+            return responseJson.data.slice(-7);      
 
         } catch (error) {
             rejectWithValue("Oups un problème est apparu !");
@@ -64,7 +68,9 @@ export const fetchBitcoinInfos = createAsyncThunk(
     async (_, {rejectWithValue}) => {
         try {
             const response = await fetch(BITCOIN__URL);
-            return (await response.json()) as CoinType;      
+            const responseJson: {data: CoinType} = await response.json(); 
+
+            return responseJson.data;  
 
         } catch (error) {
             rejectWithValue("Oups un problème est apparu !");
@@ -77,10 +83,10 @@ export const fetchBitcoinHistoryInfos = createAsyncThunk(
     async (_, {rejectWithValue}) => {
         try {
             const response = await fetch(BITCOIN_HISTORY_URL);
-            const responseJson: CoinHistoryType[] = await response.json();
+            const responseJson: {data: CoinHistoryType[]} = await response.json();
 
             // Last 7 days history price
-            return responseJson.slice(-7);      
+            return responseJson.data.slice(-7);      
 
         } catch (error) {
             rejectWithValue("Oups un problème est apparu !");
@@ -93,7 +99,9 @@ export const fetchEthereumInfos = createAsyncThunk(
     async (_, {rejectWithValue}) => {
         try {
             const response = await fetch(ETHEREUM_URL);
-            return (await response.json()) as CoinType;      
+            const responseJson: {data: CoinType} = await response.json(); 
+
+            return responseJson.data;      
 
         } catch (error) {
             rejectWithValue("Oups un problème est apparu !");
@@ -106,10 +114,10 @@ export const fetchEthereumHistoryInfos = createAsyncThunk(
     async (_, {rejectWithValue}) => {
         try {
             const response = await fetch(ETHEREUM_HISTORY_URL);
-            const responseJson: CoinHistoryType[] = await response.json();
+            const responseJson: {data: CoinHistoryType[]} = await response.json();
 
             // Last 7 days history price
-            return responseJson.slice(-7);    
+            return responseJson.data.slice(-7);    
 
         } catch (error) {
             rejectWithValue("Oups un problème est apparu !");

@@ -7,7 +7,7 @@ interface CardCryptoProps {
     unitCurrentPrice: string;
     chart: JSX.Element;
     titlechart?: string;
-    className: string;
+    className?: string;
 }
 
 export const CardCrypto = ({chart, currentPrice, logo, title, titlechart, unitCurrentPrice, className}: CardCryptoProps) => {

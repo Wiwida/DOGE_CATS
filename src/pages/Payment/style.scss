@@ -1,0 +1,120 @@
+.page-payment {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-shadow: var(--text-shadow-classic);
+    color: var(--text-primary-light);
+    width: 50%;
+
+    h2 {
+        margin-top: 70px;
+        font-weight: 700;
+        font-size: 54px;
+        letter-spacing: 0.1rem;
+        margin-bottom: 20px;
+    }
+
+    .payment-card-counter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        .card-ticket-title {
+            margin-bottom: 24px;
+            font-size: 30px;
+
+        }
+
+        .container-card-counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .card-ticket-counter {
+                margin: 0 45px;
+                font-size: 36px;
+                font-weight: 800;
+            }
+
+            button {
+                border-radius: 50%;
+                height: 50px;
+                width: 50px;
+
+                .mantine-Button-label {
+                    margin: 0;
+                }
+
+                .mantine-Button-section {
+                    margin: 0;
+                }
+            }
+
+        }
+    }
+
+    .card-ticket {
+        margin-top: 24px;
+        margin-bottom: 5px;
+        font-size: 34px;
+    }
+
+    .card-ticket-subprice {
+        font-style: italic;
+        font-size: 12px;
+        margin-bottom: 24px;
+    }
+
+    .card-ticket-advantage {
+        width: 100%;
+        padding: 8px 16px;
+        margin-bottom: 24px;
+        background-color: rgba(255, 238, 0, 0.25);
+        box-shadow: var(--doge-shadow);
+        border-radius: 3px;
+    }
+
+    .payment-card-counter {
+        width: 50%;
+        text-align: center;
+        
+        .card-counter-title {
+            font-size: 32px;
+        }
+
+        .card-counter-advantage {
+            margin: 24px 0;
+            text-align: center;
+            width: 100%;
+            padding: 8px 16px;
+            margin-bottom: 24px;
+            background-color: rgba(255, 238, 0, 0.25);
+            border-radius: 3px;
+        }
+
+        .card-counter-price {
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 52px;
+            text-shadow: var(--text-shadow-classic);
+            font-weight: 900;
+            letter-spacing: 0.15rem;
+            
+        }
+
+        .card-counter-price-before {
+            font-style: italic;
+        }
+    }   
+
+    .button-payment-confirm {
+        margin-top: 24px;
+        margin-bottom: 24px;
+        min-width: 360px;
+    }
+}
